@@ -32,19 +32,17 @@ module YasminArroyoGetProjectActivities
     request['Authorization'] = bearer_token(api_token)
     request
   end
-  module_function :build_request
 
   def activities_url_by_parent_project_id(parent_project_id)
     uri = URI('https://api.todoist.com/api/v1/activities')
     uri.query = URI.encode_www_form({ parent_project_id: })
     uri
   end
-  module_function :activities_url_by_parent_project_id
 
   def bearer_token(api_token)
     "Bearer #{api_token}"
   end
-  module_function :bearer_token
 
+  module_function :build_request, :activities_url_by_parent_project_id, :bearer_token
   private :activities_url_by_parent_project_id, :bearer_token
 end
