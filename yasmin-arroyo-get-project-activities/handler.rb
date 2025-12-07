@@ -3,6 +3,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
+require 'openssl'
 
 module YasminArroyoGetProjectActivities
   module_function
@@ -15,6 +16,7 @@ module YasminArroyoGetProjectActivities
     request = build_request(parent_project_id: parent_project_id, api_token: api_token)
 
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+      http.verify_mode = OpenSSL::SSL::VERIFY_NONE
       http.request(request)
     end
 
