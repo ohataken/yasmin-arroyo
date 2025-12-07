@@ -23,9 +23,9 @@ module YasminArroyoGetProjectActivities
     {
       statusCode: response.code.to_i,
       headers: {
-        'Content-Type' => 'application/json'
+        'Content-Type' => 'application/json; charset=utf-8'
       },
-      body: response.body
+      body: JSON.generate(JSON.parse(response.body))
     }
   end
 
