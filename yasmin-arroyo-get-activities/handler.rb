@@ -14,4 +14,8 @@ module YasminArroyoGetActivities
     uri.query = URI.encode_www_form({ parent_project_id: })
     uri
   end
+
+  def bearer_token(api_token)
+    "Bearer #{api_token}"
+  end
 end
