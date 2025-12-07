@@ -44,3 +44,12 @@ module YasminArroyoGetProjectActivities
     "Bearer #{api_token}"
   end
 end
+
+# Lambda entry point
+class Handler
+  include YasminArroyoGetProjectActivities
+
+  def self.process(event:, context:)
+    new.handle(event: event, context: context)
+  end
+end
