@@ -2,11 +2,27 @@
 
 require 'net/http'
 require 'uri'
+require 'json'
 
 module YasminArroyoGetActivities
   def handle(event:, context:)
     parent_project_id = event["pathParameters"]["project_id"]
     api_token = event["queryStringParameters"]["api_token"]
+
+    uri = activities_url_by_parent_project_id(parent_project_id: parent_project_id)
+    request = build_request(parent_project_id: parent_project_id, api_token: api_token)
+
+    response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
+      http.request(request)
+    end
+
+    {
+      statusCode: response.code.to_i,
+      headers: {
+        'Content-Type' => 'application/json'
+      },
+      body: response.body
+    }
   end
 
   def build_request(parent_project_id:, api_token:)
