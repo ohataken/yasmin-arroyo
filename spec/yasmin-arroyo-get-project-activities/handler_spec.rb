@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative '../../yasmin-arroyo-get-activities/handler'
+require_relative '../../yasmin-arroyo-get-project-activities/handler'
 
-RSpec.describe YasminArroyoGetActivities do
-  include YasminArroyoGetActivities
+RSpec.describe YasminArroyoGetProjectActivities do
+  include YasminArroyoGetProjectActivities
 
   describe '#activities_url_by_parent_project_id' do
     it 'returns a valid URI with the parent_project_id parameter' do
