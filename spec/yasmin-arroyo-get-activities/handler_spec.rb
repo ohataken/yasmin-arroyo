@@ -15,4 +15,14 @@ RSpec.describe YasminArroyoGetActivities do
       expect(uri.to_s).to eq('https://api.todoist.com/api/v1/activities?parent_project_id=ffff')
     end
   end
+
+  describe '#bearer_token' do
+    it 'returns a bearer token string without errors' do
+      api_token = 'test_api_token_12345'
+
+      result = bearer_token(api_token)
+
+      expect(result).to eq('Bearer test_api_token_12345')
+    end
+  end
 end
