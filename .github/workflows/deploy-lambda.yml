@@ -1,0 +1,40 @@
+name: Deploy Lambda Function
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Package Lambda function
+        run: |
+          cd yasmin-arroyo-get-project-activities
+          mkdir -p ../dist
+          zip -r ../dist/yasmin-arroyo-get-project-activities.zip handler.rb
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Deploy Lambda Function
+        uses: aws-actions/aws-lambda-deploy@v1
+        with:
+          function-name: yasmin-arroyo-get-project-activities
+          code-artifacts-dir: dist
+          handler: handler.Handler.process
+          runtime: ruby3.3
