@@ -5,6 +5,8 @@ require 'uri'
 require 'json'
 
 module YasminArroyoGetProjectActivities
+  module_function :handle
+
   def handle(event:, context:)
     parent_project_id = event["pathParameters"]["project_id"]
     api_token = event["queryStringParameters"]["api_token"]
