@@ -25,4 +25,16 @@ RSpec.describe YasminArroyoGetActivities do
       expect(result).to eq('Bearer test_api_token_12345')
     end
   end
+
+  describe '#build_request' do
+    it 'returns a Net::HTTP::Get request without errors' do
+      parent_project_id = 'test_project_123'
+      api_token = 'test_api_token_12345'
+
+      request = build_request(parent_project_id: parent_project_id, api_token: api_token)
+
+      expect(request).to be_a(Net::HTTP::Get)
+      expect(request['Authorization']).to eq('Bearer test_api_token_12345')
+    end
+  end
 end
