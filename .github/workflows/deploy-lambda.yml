@@ -36,5 +36,5 @@ jobs:
         with:
           function-name: yasmin-arroyo-get-project-activities
           code-artifacts-dir: dist
-          handler: handler.Handler.process
+          handler: handler.YasminArroyoGetProjectActivities.handle
           runtime: ruby3.4
