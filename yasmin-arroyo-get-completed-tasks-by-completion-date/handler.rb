@@ -37,8 +37,8 @@ module YasminArroyoGetCompletedTasksByCompletionDate
   end
 
   def completed_tasks_url_by_completion_date(completion_date)
-    uri = URI('https://api.todoist.com/sync/v9/completed/get_all')
-    uri.query = URI.encode_www_form({ since: completion_date })
+    uri = URI('https://api.todoist.com/api/v1/tasks/completed/by_completion_date')
+    uri.query = URI.encode_www_form({ completion_date: })
     uri
   end
 

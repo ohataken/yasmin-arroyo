@@ -6,13 +6,13 @@ RSpec.describe YasminArroyoGetCompletedTasksByCompletionDate do
   include YasminArroyoGetCompletedTasksByCompletionDate
 
   describe '#completed_tasks_url_by_completion_date' do
-    it 'returns a valid URI with the since parameter' do
+    it 'returns a valid URI with the completion_date parameter' do
       completion_date = '2025-12-01T00:00:00'
 
       uri = completed_tasks_url_by_completion_date(completion_date)
 
       expect(uri).to be_a(URI::HTTPS)
-      expect(uri.to_s).to eq('https://api.todoist.com/sync/v9/completed/get_all?since=2025-12-01T00%3A00%3A00')
+      expect(uri.to_s).to eq('https://api.todoist.com/api/v1/tasks/completed/by_completion_date?completion_date=2025-12-01T00%3A00%3A00')
     end
   end
 
