@@ -6,11 +6,13 @@ RSpec.describe YasminArroyoGetUser do
   include YasminArroyoGetUser
 
   describe '#user_url' do
-    it 'returns a valid URI for the Todoist user endpoint' do
-      uri = user_url
+    it 'returns a valid URI with the parent_project_id parameter' do
+      parent_project_id = 'ffff'
+
+      uri = user_url(parent_project_id)
 
       expect(uri).to be_a(URI::HTTPS)
-      expect(uri.to_s).to eq('https://api.todoist.com/sync/v9/sync?sync_token=*&resource_types=[%22user%22]')
+      expect(uri.to_s).to eq('https://api.todoist.com/api/v1/tasks/completed/by_completion_date?parent_project_id=ffff')
     end
   end
 
@@ -26,9 +28,10 @@ RSpec.describe YasminArroyoGetUser do
 
   describe '#build_request' do
     it 'returns a Net::HTTP::Get request without errors' do
+      parent_project_id = 'test_project_123'
       api_token = 'test_api_token_12345'
 
-      request = build_request(api_token: api_token)
+      request = build_request(parent_project_id: parent_project_id, api_token: api_token)
 
       expect(request).to be_a(Net::HTTP::Get)
       expect(request['Authorization']).to eq('Bearer test_api_token_12345')
