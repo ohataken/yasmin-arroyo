@@ -1,0 +1,6 @@
+# Bundler
+vendor/bundle/
+.bundle/
+
+# Gem files
+Gemfile.lock
