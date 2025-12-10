@@ -1,0 +1,10 @@
+# Bundler
+vendor/bundle/
+.bundle/
+
+# RSpec
+spec/examples.txt
+
+# Gem files
+*.gem
+Gemfile.lock
