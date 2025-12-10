@@ -1,4 +1,4 @@
-name: RSpec
+name: rspec
 
 on:
   push:
