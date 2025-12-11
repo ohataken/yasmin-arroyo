@@ -4,8 +4,9 @@ require 'net/http'
 require 'uri'
 require 'json'
 require 'openssl'
-require 'rss'
 require 'time'
+require 'bundler/setup'
+Bundler.require
 
 module YasminArroyoGetProjectActivitiesRss
   module_function
