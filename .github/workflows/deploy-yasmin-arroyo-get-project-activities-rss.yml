@@ -18,6 +18,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4'
+
+      - name: Bundle install
+        run: bundle install --path vendor/bundle
+        working-directory: yasmin-arroyo-get-project-activities-rss
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
