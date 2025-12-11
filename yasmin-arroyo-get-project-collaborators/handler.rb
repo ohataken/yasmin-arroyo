@@ -12,7 +12,7 @@ module YasminArroyoGetProjectCollaborators
     project_id = event["pathParameters"]["project_id"]
     api_token = event["queryStringParameters"]["api_token"]
 
-    uri = collaborators_url_by_project_id(project_id: project_id)
+    uri = collaborators_url_by_project_id(project_id)
     request = build_request(project_id: project_id, api_token: api_token)
 
     response = Net::HTTP.start(uri.hostname, uri.port, use_ssl: true) do |http|
